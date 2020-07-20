@@ -1,0 +1,22 @@
+<h3>Editar Cadastro</h3>
+
+<div class="card">
+    <div class="card-body">
+        <form action="/administrador/altera_cadastro/salvar" method="POST">
+                <input type="text" name="id_cliente" hidden="true" value="{{id_cliente}}">
+
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" class="form-control" value="{{cadastro.nome}}">
+                <br>  
+
+                <label for="cpf">CPF</label>
+                <input type="text" name="cpf" class="form-control" value={{cadastro.cpf}}>
+                <br> 
+
+                <label for="codigo">Código Perfíl</label>
+                <input type="text" name="codigo" class="form-control" value={{cadastro.codigo}}>
+
+                <button type="submit" class="btn btn-success mt-4">Salvar</button>
+        </form>        
+    </div>
+</div>

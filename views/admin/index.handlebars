@@ -1,0 +1,29 @@
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">#</th>
+      {{!-- <th scope="col">ID</th> --}}
+      <th scope="col">NOME</th>
+      <th scope="col">CPF</th>
+      <th scope="col">COD_PERFIL</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each cadastro}}
+    <tr>
+      <th scope="row"><a href="/administrador/altera_cadastro/{{id}}"> <button class="btn btn-primary">Editar</button></a></th>
+      
+      {{!-- {{#if id}} --}}
+      {{!-- <th scope="row"><a href="/administrador/ativa_cadastro/{{id}}"> <button class="btn btn-success">Ativar</button></a></th> --}}
+      {{!-- {{else}} --}}
+      <th scope="row"><a href="/administrador/desativa_cadastro/{{id}}"> <button class="btn btn-danger">Desativar</button></a></th>
+      {{!-- {{/if}} --}}
+      {{!-- <td>{{id}}</td> --}}
+      <td>{{dados.nome}}</td>
+      <td>{{dados.cpf}}</td>
+      <td>{{dados.codigo}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
