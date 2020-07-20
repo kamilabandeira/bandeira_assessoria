@@ -5,9 +5,18 @@ const bd = require("../public/js/firebase")
 
 //Administrador
 router.get("/", async (req, res) => {
-    var lista_cadastro = await bd.consultarCadastroAdmin()
 
-    res.render("admin/index", { cadastro: lista_cadastro })    
+     //Realiza consulta do codigo de perfil
+     var codigo = await bd.consultarCodigo()
+        
+     if(codigo == "999") {                     // Tratamento para garatir que apenas administradores terão acesso
+        var lista_cadastro = await bd.consultarCadastroAdmin()    
+
+        res.render("admin/index", { cadastro: lista_cadastro })
+     } else {
+         res.redirect("/login")
+     }
+        
 })
 
  
@@ -33,16 +42,19 @@ router.post("/altera_cadastro/salvar", async (req, res) => {
     var nome = req.body.nome
     var cpf = req.body.cpf
     var codigo = req.body.codigo
-    
-    var salvar = await bd.salvarCadastroAdministrador(id_cliente, nome, cpf, codigo)
-    
-    if(salvar) {
-        console.log("informacoes salvas com sucesso")
 
-    } else {
-        console.log("error ao salvar informacoes")
+    if(codigo == "999" || codigo == "1" || codigo == "0") {   //Tratamento de erro para os codigos
+
+        var salvar = await bd.salvarCadastroAdministrador(id_cliente, nome, cpf, codigo)
+    
+        if(salvar) {
+            console.log("informacoes salvas com sucesso")
+
+        } else {
+            console.log("error ao salvar informacoes")
+        }
     }
-
+        
     res.redirect("/administrador")
 })
 

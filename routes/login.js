@@ -8,6 +8,12 @@ router.get("/", (req, res) => {
                 
 })
 
+router.get("/sair",async (req, res) => {
+    await bd.sair()
+
+    res.redirect("/login")                
+})
+
 
 router.post("/entrar",async (req, res) => {
     var email = req.body.email
@@ -26,7 +32,10 @@ router.post("/entrar",async (req, res) => {
         } else if(codigo == "1") {
             res.redirect("/cliente")
 
-        } else {
+        } else if( codigo == "0"){
+            res.redirect("/login")
+        }
+         else {
             res.redirect("/criar_conta")
         }       
 

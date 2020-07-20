@@ -4,14 +4,24 @@ const bd = require("../public/js/firebase")
 
 //Cliente
 router.get("/", async (req, res) => {
-    var lista_cadastro = await bd.consultarCadastroCliente()    
 
-    var json_cadastro = {        
-        cpf:    lista_cadastro[0].cpf,
-        nome:   lista_cadastro[1].nome
-    }
-    
-    res.render("cliente/index", { cadastro: json_cadastro })
+     //Realiza consulta do codigo de perfil
+     var codigo = await bd.consultarCodigo()
+        
+     if(codigo == "1") {   //Tratamento para garantir que o codigo == 0 não tera acesso      
+
+        var lista_cadastro = await bd.consultarCadastroCliente()    
+
+        var json_cadastro = {        
+            cpf:    lista_cadastro[0].cpf,
+            nome:   lista_cadastro[1].nome
+        }
+        
+        res.render("cliente/index", { cadastro: json_cadastro })
+
+     } else {
+         res.redirect("/login")
+     }
 })
 
 //Altera Cadastro

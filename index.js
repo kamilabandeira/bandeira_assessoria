@@ -29,7 +29,7 @@ const login = require("./routes/login")
 
 
 //Subindo servidor
-const PORT = 8006
+const PORT = 9001
 app.listen(PORT, () => {
     console.log("Servidor rodando na porta " + PORT)
 })

@@ -53,6 +53,21 @@ async function login(email, senha) {
 } 
 
 
+//Sair
+async function sair() {  
+  
+  return await firebase.auth().signOut().then( (result) => {
+    return true
+  }).catch((error) => {
+    console.log("Error ao sair com o usuario ")
+    console.log(error)
+  
+    return false
+  })
+}
+
+
+
 //Desativar Usuario
 async function desativarUsuario(id_cliente) {  
   
@@ -335,5 +350,6 @@ module.exports = {
   salvarCadastroAdministrador : salvarCadastroAdministrador,
   salvarCadastroCliente       : salvarCadastroCliente      ,
   criarCadastroCliente        : criarCadastroCliente       ,
-  desativarUsuario            : desativarUsuario
+  desativarUsuario            : desativarUsuario           ,
+  sair                        : sair
 }
